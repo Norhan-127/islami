@@ -20,7 +20,7 @@ class MyThemeData {
             fontWeight: FontWeight.w700,
           ),
           subtitle1: TextStyle(
-            fontSize: 25,
+            fontSize: 20,
             color: colorBlack,
             fontWeight: FontWeight.w400,
           )),
