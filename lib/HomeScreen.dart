@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+//import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:islami/home/Ahadeth/HadethTab.dart';
 import 'package:islami/home/RadioTab.dart';
 import 'package:islami/home/SebhaTab.dart';
+import 'package:islami/home/provider/themeProvider.dart';
 import 'package:islami/home/quran/QuranTab.dart';
+import 'package:islami/home/settings/settings_tab.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String route_name = 'home';
@@ -17,10 +21,11 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var themeProvider = Provider.of<ThemeProvider>(context);
     return Stack(
       children: [
         Image.asset(
-          'assets/images/main_background.png',
+          themeProvider.getBackgroundImage(),
           width: double.infinity,
           height: double.infinity,
           fit: BoxFit.fill,
@@ -28,7 +33,8 @@ class _HomeScreenState extends State<HomeScreen> {
         Scaffold(
           appBar: AppBar(
               title: Text(
-            AppLocalizations.of(context)!.islami,
+            //AppLocalizations.of(context)!.islami,
+            "Islami",
             style: Theme.of(context).textTheme.headline1,
           )),
           bottomNavigationBar: Theme(
@@ -54,6 +60,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 BottomNavigationBarItem(
                     icon: ImageIcon(AssetImage('assets/images/ic_radio.png')),
                     label: 'Radio'),
+                BottomNavigationBarItem(
+                    icon: Icon(Icons.settings), label: 'Settings'),
               ],
             ),
           ),
@@ -63,5 +71,11 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  List<Widget> tabs = [QuranTab(), HadethTab(), SebhaTab(), RadioTab()];
+  List<Widget> tabs = [
+    QuranTab(),
+    HadethTab(),
+    SebhaTab(),
+    RadioTab(),
+    SettingTab()
+  ];
 }
