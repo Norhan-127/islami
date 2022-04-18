@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:islami/sura_details/item_verse.dart';
+import 'package:provider/provider.dart';
+
+import '../home/provider/themeProvider.dart';
 
 class SuraDetailsScreen extends StatefulWidget {
   static const route_name = 'sura-details';
@@ -15,11 +18,12 @@ class _SuraDetailsScreenState extends State<SuraDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     var args = ModalRoute.of(context)?.settings.arguments as SuraDetailsAgs;
+    var themeProvider = Provider.of<ThemeProvider>(context);
     if (verses.isEmpty) loadFile(args.index);
     return Stack(
       children: [
         Image.asset(
-          'assets/images/main_background.png',
+          themeProvider.getBackgroundImage(),
           width: double.infinity,
           height: double.infinity,
           fit: BoxFit.fill,
